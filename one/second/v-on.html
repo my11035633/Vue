@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div @click='fn1'>看看我能弹出什么</div>
+        <div class="father" @click='father'>
+            <div class="son" @click.stop='son'>
+                有本事点点我看看
+            </div>
+        </div>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                fn1() {
+                    alert('hello boy')
+                },
+                son() {
+                    alert('son')
+                },
+                father() {
+                    alert('father')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

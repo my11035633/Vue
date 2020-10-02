@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='(item,index) in list' >
+                {{item}}
+            </li>
+            <li v-for='(item, index) in list2' :key='item.id'>
+                {{item.id}} -------------------{{item.name}}
+
+            </li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    '张飞',
+                    '甄姬',
+                    '马超',
+                    '刘备'
+                ],
+                list2: [{
+                        id: 1,
+                        name: "wang1"
+                    },
+                    {
+                        id: 2,
+                        name: "wang2"
+                    },
+                    {
+                        id: 3,
+                        name: "wang3"
+                    },
+                    {
+                        id: 4,
+                        name: "wang4"
+                    },
+                    {
+                        id: 5,
+                        name: "wang5"
+                    },
+                    {
+                        id: 6,
+                        name: "wang6"
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

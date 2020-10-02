@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click.prevent='fn1'>点击我给你表白</button>
+        <div class="father" @click='father'>
+            <div class="son" @click.stop='son'>我是儿子</div>
+        </div>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+                fn1() {
+                    alert('待我长发及腰，减去卖钱可好')
+                },
+                son() {
+                    alert('son')
+                },
+                father() {
+                    alert('father')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

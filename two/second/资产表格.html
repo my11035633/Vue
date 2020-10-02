@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .red {
+      color: red;
+    }
+
+    .search {
+      width: 300px;
+      margin: 20px 0
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <input type="text" class="form-control search" v-model='search'>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>资产名称</th>
+            <th>价格</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for='(item, index) in showList' :key='item.id'>
+            <td> {{index + 1}} </td>
+            <td> {{item.name}} </td>
+            <td :class='{ red : item.price >=100}'> {{item.price | format}} </td>
+            <td><a href="javascript:;" @click='del(item.id)'>删除</a></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan='4'>
+              总价: {{total | format}} 元
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- 添加资产 -->
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="资产名称" v-model.trim='name' />
+          </div>
+          &nbsp;&nbsp;
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="资产价格" v-model.number='price' />
+          </div>
+        </div>
+        &nbsp;&nbsp;
+        <button class="btn btn-primary" @click.prevent='add'>添加资产</button>
+      </form>
+    </div>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    // 创建vue实例
+    Vue.filter('format', (value) => {
+      return '￥' + value
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        list: [{
+            id: 1,
+            name: '外套',
+            price: 99
+          },
+          {
+            id: 2,
+            name: '裤子',
+            price: 34
+          },
+          {
+            id: 3,
+            name: '鞋',
+            price: 25.4
+          },
+          {
+            id: 4,
+            name: '头发',
+            price: 199
+          }
+        ],
+        name: '',
+        price: 0,
+        search: ''
+      },
+      methods: {
+        del(id) {
+          this.list = this.list.filter(item => item.id !== id)
+        },
+        add() {
+          this.list.push({
+            id: +new Date(),
+            name: this.name,
+            price: this.price
+          })
+        }
+      },
+      computed: {
+        showList() {
+          return this.list.filter(item => item.name.includes(this.search))
+        },
+        total() {
+          let initValue = 0
+          return this.showList.reduce((acc, cur) => acc + cur.price, initValue)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入名字名字" v-model='username'>
+        <input type="text" placeholder="请输入密码" v-model='password'>
+
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                password: ''
+            }
+        })
+    </script>
+</body>
+
+</html>

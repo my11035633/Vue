@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-if='age >=80'>80岁以上打篮球</h1>
+        <h1 v-else-if='age >=40'>40岁以上长跑</h1>
+        <h1 v-else>10岁抽烟</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                age: 40
+            }
+        })
+    </script>
+</body>
+
+</html>

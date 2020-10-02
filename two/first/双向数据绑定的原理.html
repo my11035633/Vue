@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <p></p>
+    <script>
+        let data = {
+            age: 12
+        }
+
+        let input = document.querySelector('input')
+        let p = document.querySelector('p')
+        p.innerText = data.age
+        input.value = data.age
+
+        input.addEventListener('input', function () {
+            data.age = this.value
+        })
+
+        let temp = data.age
+        Object.defineProperty(data, 'age', {
+            get() {
+                return temp
+            },
+
+            set(value) {
+                temp = value
+                input.value = value
+                p.innerText = value
+            }
+        })
+    </script>
+</body>
+
+</html>
